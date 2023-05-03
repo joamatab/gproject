@@ -28,7 +28,7 @@ with tempfile.TemporaryDirectory() as tmpdirname:
         def handle(self):
             # self.request is the TCP socket connected to the client
             raw_data = self.request.recv(1024).strip()
-            print("{} wrote:".format(self.client_address[0]))
+            print(f"{self.client_address[0]} wrote:")
             data = json.loads(raw_data)
             print(data)
             if "gds" in data: 
@@ -36,7 +36,7 @@ with tempfile.TemporaryDirectory() as tmpdirname:
 
             mqtt_client = mqtt.Client("klive_translator")
             mqtt_client.connect("localhost")
-            mqtt_client.publish("klive", raw_data) 
+            mqtt_client.publish("klive", raw_data)
             mqtt_client.disconnect()
     
     def start_fileserver():

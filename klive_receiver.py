@@ -24,7 +24,7 @@ if __name__ == "__main__":
             data_string = json.dumps(data)
             try:
                 conn = socket.create_connection(("127.0.0.1", 8082), timeout=1.0)
-                data_string = data_string + "\n"
+                data_string += "\n"
                 data_string = (
                     data_string.encode() if hasattr(data_string, "encode") else data_string
                 )
@@ -33,7 +33,6 @@ if __name__ == "__main__":
                 conn.close()
             except OSError:
                 print("OSError")
-                pass
             time.sleep(10)
 
     mqtt_client = mqtt.Client("klive receiver")
